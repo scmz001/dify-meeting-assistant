@@ -1,0 +1,12 @@
+.env
+.env.*
+__pycache__/
+*.pyc
+.workbuddy/
+.idea/
+.vscode/
+*.log
+/output/
+*.xlsx
+.DS_Store
+Thumbs.db
