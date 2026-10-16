@@ -39,34 +39,19 @@ A 路径挂历史纪要作为背景，B 路径不挂，其余处理一致。检�
 
 ![Dify 流程画布](docs/screenshots/dify-flow.png)
 
-纪要推到钉钉群，待办自动落成 Trello 卡（负责人 / 截止日 / 细节都带过去）：
-
-![钉钉群机器人推送](docs/screenshots/dingtalk-bot.png)
+待办自动落成 Trello 卡（负责人 / 截止日 / 细节都带过去）：
 
 ![Trello 自动建卡](docs/screenshots/trello-card-detail.png)
 
 ![Trello 会议待办看板](docs/screenshots/trello-board.png)
 
----
+纪要同步推到钉钉群：
 
-## 四、导入与配置
-
-以下截图来自本地已跑通的演示环境；导入后需要自行准备知识库并填好下面 4 个环境变量才能复现。
-
-1. Dify 导入 `会议纪要助手.yml`（DSL v0.7.0，advanced-chat），依赖插件 `openai_api_compatible` 和 `ollama`
-2. 准备一个放历史纪要的知识库（bge-m3 向量化），导入后在编排页把知识检索节点重新绑定到自己的库——DSL 里带的只是我这边库的 ID
-3. 填 4 个环境变量（DSL 导出时 secret 会清空，要手动填）：
-
-| 变量 | 用途 |
-| :--- | :--- |
-| `TRELLO_API_KEY` | Trello REST API 的 key |
-| `TRELLO_TOKEN` | Trello 授权 token |
-| `TRELLO_LIST_ID` | 待办卡片落到的列表 ID |
-| `DINGTALK_WEBHOOK` | 钉钉群机器人 Webhook 地址 |
+![钉钉群机器人推送](docs/screenshots/dingtalk-bot.png)
 
 ---
 
-## 五、已知问题
+## 四、已知问题
 
 1. **超长会议会截断。** qwen3.5-9b 上下文有限，目前只做了 50 字下限校验，没做上限分块——几个小时的逐字稿，模型可能只看到开头。
 2. **检索 query 是整段逐字稿。** bge-m3 输入长度有限，长文做查询会被截断，历史纪要的召回质量打折。
@@ -75,7 +60,7 @@ A 路径挂历史纪要作为背景，B 路径不挂，其余处理一致。检�
 
 ---
 
-## 六、后续
+## 五、后续
 
 下一版先做双分支收敛（渲染 + 建卡各留一份）和让 Trello 失败能看见，然后补一批评测用例，把纪要质量量化出来再谈迭代。
 
